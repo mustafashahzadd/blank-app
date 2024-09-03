@@ -6,10 +6,15 @@ from sentence_transformers import SentenceTransformer
 import faiss
 from groq import Groq
 from dotenv import load_dotenv
-load_dotenv()
 
-# Initialize Groq client assuming that the environment variable is set
-groq_client = Groq()
+load_dotenv()
+api_key = os.getenv("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")
+
+if api_key:
+    groq_client = Groq(api_key=api_key)
+else:
+    print("API key not found. Please set the GROQ_API_KEY environment variable.")
+
 
 def gym_app():
     
@@ -328,7 +333,7 @@ def ath_app():
     st.write("Wait")
     
     def respond_athletes(user_input,multi_turn=False):
-        client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+        client = Groq(api_key=os.getenv("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"))
         chat_completion = client.chat.completions.create(
             messages=[
                 {
